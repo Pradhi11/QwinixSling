@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
-public class ListUser {
+public class ListUserController {
 
     @RequestMapping("/listUsers")
     public String listUser(){

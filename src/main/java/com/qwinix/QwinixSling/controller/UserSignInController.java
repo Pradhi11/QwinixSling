@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserSignIn {
+public class UserSignInController {
 
     @RequestMapping("/hello")
     public String sayHi(){

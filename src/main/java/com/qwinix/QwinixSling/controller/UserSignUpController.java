@@ -3,7 +3,7 @@ package com.qwinix.QwinixSling.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserSignUp {
+public class UserSignUpController {
 
     public String creat(){
         return "hi";
