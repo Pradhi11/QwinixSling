@@ -19,16 +19,12 @@ public class CreateUserService {
          boolean success;
 
          UserResponce userResponce = new UserResponce();
-//        System.out.print("in servic1e1111111");
             if(UserValidator.validateEmail(user.getEmail())){
                 if(UserValidator.validatePassword(user.getPassword())){
                     if(UserValidator.validatePhone(user.getPhoneNumber())){
                         if(UserValidator.validateName(user.getName())){
                             if(UserValidator.validateIncome(user.getAnnualIncome())){
-//                                System.out.print("876786876876");
                                 if(UserValidator.validateDod(user.getDateOfBirth())){
-                                    System.out.print("llllllll");
-//                                    System.out.print(user);
                                     User createUser = userRepo.save(user);
                                    if(createUser != null){
                                        success = true;
@@ -38,41 +34,52 @@ public class CreateUserService {
                                        userResponce.setStatus(success);
                                        return userResponce;
                                    }else {
-                                       return null;
+                                       success = false;
+                                       message = "somthing went wrong!";
+                                       userResponce.setUser(user);
+                                       userResponce.setMessage(message);
+                                       userResponce.setStatus(success);
+                                       return userResponce;
                                    }
                                 }else {
                                     success = false;
-//                                    userResponce.setMessage(message);
+                                    message = "invalid annual income";
+                                    userResponce.setMessage(message);
                                     userResponce.setStatus(success);
                                     return userResponce;
                                 }
                             }else {
                                 success = false;
-//                                userResponce.setMessage(message);
+                                message = "invalid name";
+                                userResponce.setMessage(message);
                                 userResponce.setStatus(success);
                                 return userResponce;
                             }
                         }else {
                             success = false;
-//                            userResponce.setMessage(message);
+                            message = "invalid phone number";
+                            userResponce.setMessage(message);
                             userResponce.setStatus(success);
                             return userResponce;
                         }
                     }else {
                         success = false;
-//                        userResponce.setMessage(message);
+                        message = "invalid password";
+                        userResponce.setMessage(message);
                         userResponce.setStatus(success);
                         return userResponce;
                     }
                 }else {
                     success = false;
-//                    userResponce.setMessage(message);
+                    message = "invalid password";
+                    userResponce.setMessage(message);
                     userResponce.setStatus(success);
                     return userResponce;
                 }
             }else {
                 success = false;
-//                userResponce.setMessage(message);
+                message = "email is required";
+                userResponce.setMessage(message);
                 userResponce.setStatus(success);
                 return userResponce;
             }
