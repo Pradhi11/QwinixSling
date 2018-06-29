@@ -16,13 +16,10 @@ public class UserSignUpController {
     @Autowired
     CreateUserService userService;
 
-    @Autowired
-    UserValidator userValidator;
-
     @PostMapping("/SingUp")
     public UserResponce creatUser(@RequestBody User user){
 
-        UserResponce validUser = userValidator.validateUser(user);
+        UserResponce validUser = userService.validateUser(user);
         return validUser;
     }
 }
