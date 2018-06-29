@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -149,7 +151,7 @@ public class UserValidator {
             message = "date of birth is required";
             return false;
         }else {
-            boolean checkDate = isValidFormat("mm/dd/yyyy", dob);
+            boolean checkDate = isValidFormat("MM/dd/yyyy", dob);
              if(checkDate){
                  return checkDate;
              }else {
@@ -166,11 +168,36 @@ public class UserValidator {
             date = sdf.parse(value);
             if (!value.equals(sdf.format(date))) {
                 date = null;
+                return false;
+            }
+            else{
+               // String dd = "07/30/2018";
+                Date date1 = new Date();
+                    Calendar a = getCalendar(date);
+                    Calendar b = getCalendar(date1);
+                    int diff = b.get(Calendar.YEAR) - a.get(Calendar.YEAR);
+                    if (a.get(Calendar.DAY_OF_YEAR) > b.get(Calendar.DAY_OF_YEAR)) {
+                        diff--;
+                    }
+                    System.out.println(diff);
+                    if (diff > 18){
+                        return true;
+                    }
+                    else
+                        return false;
+
+
             }
         } catch (ParseException ex) {
             ex.printStackTrace();
         }
         return date != null;
+    }
+
+    private static Calendar getCalendar(Date date1) {
+        Calendar cal = Calendar.getInstance(Locale.US);
+        cal.setTime(date1);
+        return cal;
     }
 }
 
