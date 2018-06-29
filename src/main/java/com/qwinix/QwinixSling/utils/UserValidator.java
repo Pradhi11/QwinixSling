@@ -4,6 +4,9 @@ import com.qwinix.QwinixSling.model.User;
 import com.qwinix.QwinixSling.model.UserResponce;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -127,11 +130,48 @@ public class UserValidator {
     }
 
     public static final boolean validateIncome(String income){
-        return true;
+        if(income.length()<=0){
+            message = "name is required";
+            return false;
+        }else {
+            String INCOM_REGEX = "^[0-9]+$";
+            Pattern pattern;
+            Matcher matcher;
+            pattern = Pattern.compile(INCOM_REGEX);
+            matcher = pattern.matcher(income);
+            message = "Only Alphabets are allowed";
+            return matcher.matches();
+        }
     }
 
     public static final boolean validateDod(String dob){
-        return true;
+        if(dob.length()<=0){
+            message = "date of birth is required";
+            return false;
+        }else {
+            boolean checkDate = isValidFormat("mm/dd/yyyy", dob);
+             if(checkDate){
+                 return checkDate;
+             }else {
+                 message = "invalid date";
+                 return checkDate;
+             }
+        }
+    }
+
+    public static boolean isValidFormat(String format, String value) {
+        Date date = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(format);
+            date = sdf.parse(value);
+            if (!value.equals(sdf.format(date))) {
+                date = null;
+            }
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return date != null;
     }
 }
+
 
