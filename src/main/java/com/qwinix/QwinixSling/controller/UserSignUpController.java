@@ -16,7 +16,7 @@ public class UserSignUpController {
     @Autowired
     CreateUserService userService;
 
-    @PostMapping("/SingUp")
+    @PostMapping("/signup")
     public UserResponce creatUser(@RequestBody User user){
 
         UserResponce validUser = userService.validateUser(user);
