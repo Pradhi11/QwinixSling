@@ -15,10 +15,8 @@ public class UserValidator {
 
     public static final boolean validateEmail(String email){
         if(email.length()<=0){
-//            message = "email is required";
             return false;
         }else {
-//            System.out.print("2222222");
             String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
             Pattern pattern;
             Matcher matcher;
