@@ -1,13 +1,15 @@
 package com.qwinix.QwinixSling.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name= "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long user_id;
     private String email;
     private String password;
     private String phoneNumber;
@@ -15,12 +17,12 @@ public class User {
     private String annualIncome;
     private String dateOfBirth;
 
-    public long getId() {
-        return id;
+    public long getUser_id() {
+        return user_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
     }
 
     public String getEmail() {
@@ -69,5 +71,19 @@ public class User {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "user_packages",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "package_id", referencedColumnName = "package_id"))
+    private Set<Packages> packages = new HashSet<Packages>();
+
+    public Set<Packages> getPackages() {
+        return packages;
+    }
+
+    public void setPackages(Set<Packages> packages) {
+        this.packages = packages;
     }
 }
