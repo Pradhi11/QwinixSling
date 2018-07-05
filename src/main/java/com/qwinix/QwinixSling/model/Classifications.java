@@ -13,7 +13,7 @@ public class Classifications {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Packages> packages = new ArrayList<>();
+    private List<Channels> aPackages = new ArrayList<>();
 
     Classifications(){}
 
@@ -33,15 +33,15 @@ public class Classifications {
         this.name = name;
     }
 
-    public List<Packages> getPackages() {
-        return packages;
+    public List<Channels> getaPackages() {
+        return aPackages;
     }
 
-    public void setPackages(List<Packages> packages) {
-        this.packages = packages;
+    public void setaPackages(List<Channels> aPackages) {
+        this.aPackages = aPackages;
     }
 
-    public Classifications(List<Packages> packages) {
-        this.packages = packages;
+    public Classifications(List<Channels> aPackages) {
+        this.aPackages = aPackages;
     }
 }

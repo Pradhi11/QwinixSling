@@ -6,14 +6,14 @@ public class UserSigninResponse {
     private User user;
     private boolean status;
     private String message;
-    private ArrayList<Packages> Packages;
+    private ArrayList<Channels> Channels;
 
-    public ArrayList<Packages> getPackages() {
-        return Packages;
+    public ArrayList<Channels> getChannels() {
+        return Channels;
     }
 
-    public void setPackages(ArrayList<Packages> Packages) {
-        this.Packages = Packages;
+    public void setChannels(ArrayList<Channels> Channels) {
+        this.Channels = Channels;
     }
 
     public User getUser() {

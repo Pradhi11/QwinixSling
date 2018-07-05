@@ -1,30 +1,27 @@
 package com.qwinix.QwinixSling.service;
 
 import com.qwinix.QwinixSling.model.Classifications;
-import com.qwinix.QwinixSling.model.Packages;
+import com.qwinix.QwinixSling.model.Channels;
 import com.qwinix.QwinixSling.repo.ClassificationRepo;
-import com.qwinix.QwinixSling.repo.PackageRepo;
+import com.qwinix.QwinixSling.repo.ChannelRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class CreatePackageService {
+public class CreateChannelService {
     @Autowired
-    PackageRepo packageRepo;
+    ChannelRepo channelRepo;
 
     @Autowired
     ClassificationRepo classificationRepo;
-    public String CreatePackage(Long id, Packages packages){
-        System.out.println("iiiiiiiiii "+id);
+    public String CreateChannel(Long id, Channels channels){
         Optional<Classifications> classifications = classificationRepo.findById(id);
         if (classifications.isPresent()) {
-            System.out.println("iiiiiiiiii "+classifications.get().getName());
-
             Classifications classifications1 = classifications.get();
-            packages.setClassifications(classifications1);
-            packageRepo.save(packages);
+            channels.setClassifications(classifications1);
+            channelRepo.save(channels);
         }
         return "success";
     }

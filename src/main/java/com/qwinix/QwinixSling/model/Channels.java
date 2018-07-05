@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="packages")
-public class Packages {
+public class Channels {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -53,19 +53,4 @@ public class Packages {
     public void setClassifications(Classifications classifications) {
         this.classifications = classifications;
     }
-
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "user_packages",
-//            joinColumns = @JoinColumn(name = "package_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"))
-//
-//    private Set<User>  users = new HashSet<User>();
-//
-//    public Set<User> getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(Set<User> users) {
-//        this.users = users;
-//    }
 }
