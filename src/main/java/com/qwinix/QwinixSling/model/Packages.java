@@ -1,5 +1,7 @@
 package com.qwinix.QwinixSling.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,12 @@ public class Packages {
     private List<Channels> channels = new ArrayList<>();
 
     Packages(){}
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "subsrciption_id", referencedColumnName="subsrciption_id")
+
+    private Subscriptions subscriptions;
 
     public long getPackage_id() {
         return package_id;
@@ -41,7 +49,15 @@ public class Packages {
         this.channels = channels;
     }
 
-//    public Packages(List<Channels> channels) {
+    public Subscriptions getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(Subscriptions subscriptions) {
+        this.subscriptions = subscriptions;
+    }
+
+    //    public Packages(List<Channels> channels) {
 //        this.channels = channels;
 //    }
 }

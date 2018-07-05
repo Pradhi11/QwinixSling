@@ -17,6 +17,8 @@ public class User {
     private String annualIncome;
     private String dateOfBirth;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+
     public long getUser_id() {
         return user_id;
     }
