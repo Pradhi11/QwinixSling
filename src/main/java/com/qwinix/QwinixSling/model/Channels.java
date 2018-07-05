@@ -3,31 +3,29 @@ package com.qwinix.QwinixSling.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name="packages")
+@Table(name="channels")
 public class Channels {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long channel_id;
     private String name;
     private int amount;
 
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name="classification_id", referencedColumnName="id")
+    @JoinColumn(name="package_id", referencedColumnName="package_id")
 
-    private Classifications classifications;
+    private Packages packages;
 
-    public long getId() {
-        return id;
+    public long getChannel_id() {
+        return channel_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setChannel_id(long channel_id) {
+        this.channel_id = channel_id;
     }
 
     public String getName() {
@@ -46,11 +44,11 @@ public class Channels {
         this.amount = amount;
     }
 
-    public Classifications getClassifications() {
-        return classifications;
+    public Packages getPackages() {
+        return packages;
     }
 
-    public void setClassifications(Classifications classifications) {
-        this.classifications = classifications;
+    public void setPackages(Packages packages) {
+        this.packages = packages;
     }
 }
