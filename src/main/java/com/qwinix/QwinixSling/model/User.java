@@ -73,17 +73,17 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    @ManyToMany
-    @JoinTable(name = "user_packages",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "package_id", referencedColumnName = "id"))
-    private Set<Packages> packages = new HashSet<Packages>();
-
-    public Set<Packages> getPackages() {
-        return packages;
-    }
-
-    public void setPackages(Set<Packages> packages) {
-        this.packages = packages;
-    }
+//    @ManyToMany
+//    @JoinTable(name = "user_packages",
+//            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "package_id", referencedColumnName = "id"))
+//    private Set<Packages> packages = new HashSet<Packages>();
+//
+//    public Set<Packages> getPackages() {
+//        return packages;
+//    }
+//
+//    public void setPackages(Set<Packages> packages) {
+//        this.packages = packages;
+//    }
 }

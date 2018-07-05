@@ -1,14 +1,19 @@
 package com.qwinix.QwinixSling.controller;
 
+import com.qwinix.QwinixSling.model.Packages;
 import com.qwinix.QwinixSling.model.User;
 import com.qwinix.QwinixSling.model.UserResponce;
 import com.qwinix.QwinixSling.model.UserSigninResponse;
+import com.qwinix.QwinixSling.repo.ClassificationRepo;
+import com.qwinix.QwinixSling.repo.PackageRepo;
 import com.qwinix.QwinixSling.service.CreateUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.bind.DatatypeConverter;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -16,32 +21,21 @@ public class UserSignInController {
     @Autowired
     CreateUserService userService;
 
-   // @GetMapping("/SignIn")
-/*
-    public User loginUser(@PathVariable(value = "userName") String userName, @PathVariable(value = "password") String password){
- */
-   @GetMapping("/login/{email}/{password}")
-   public UserSigninResponse loginUser(@PathVariable(value = "email") String email, @PathVariable(value = "password") String password){
+    @Autowired
+    PackageRepo packageRepo;
 
-
+   @GetMapping("/login/{email}/{password}/{classification_id}")
+   public UserSigninResponse loginUser(@PathVariable(value = "email") String email, @PathVariable(value = "password") String password, @PathVariable(value = "classification_id") Long classification_id){
        UserSigninResponse userSigninResponse = userService.validateUserSignin(email, password);
-
-
-       /* String str = DatatypeConverter.printBase64Binary(user.getPassword().getBytes());
-        // System.out.println(str);
-
-        long userId = user.loginUser(userName, str);
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("user","id",userId));
-        if( userId > 0){
-
-
-            UUID uuid = UUID.randomUUID();
-            Instant instant = Instant.now();
-            Long timeStampSeconds = instant.getEpochSecond();
-            userRepository.updateSession(userName, str, uuid.toString(), timeStampSeconds);
-            user.setToken(uuid.toString());
-        }*/
-        return userSigninResponse;
+       ArrayList<Long> packages =  packageRepo.findBySearchTerm(classification_id);
+       ArrayList<Packages> userPackages = new ArrayList<>();
+       for (Long i: packages
+            ) {
+           Packages p = new Packages();
+           userPackages.add(packageRepo.findById(i).get());
+       }
+       System.out.print("hi this is result"+userPackages);
+       userSigninResponse.setPackages(userPackages);
+       return userSigninResponse;
     }
 }

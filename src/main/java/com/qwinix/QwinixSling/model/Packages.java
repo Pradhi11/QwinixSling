@@ -54,17 +54,18 @@ public class Packages {
         this.classifications = classifications;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_packages",
-            joinColumns = @JoinColumn(name = "package_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"))
-    private Set<User>  users = new HashSet<User>();
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "user_packages",
+//            joinColumns = @JoinColumn(name = "package_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"))
+//
+//    private Set<User>  users = new HashSet<User>();
+//
+//    public Set<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Set<User> users) {
+//        this.users = users;
+//    }
 }
