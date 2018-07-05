@@ -76,7 +76,7 @@ public class User {
     @ManyToMany
     @JoinTable(name = "user_packages",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "package_id", referencedColumnName = "package_id"))
+            inverseJoinColumns = @JoinColumn(name = "package_id", referencedColumnName = "id"))
     private Set<Packages> packages = new HashSet<Packages>();
 
     public Set<Packages> getPackages() {

@@ -11,23 +11,23 @@ import java.util.Set;
 public class Packages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long package_id;
+    private long id;
     private String name;
     private int amount;
 
-    @JsonBackReference
 
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name="classification_id", referencedColumnName="classification_id")
+    @JoinColumn(name="classification_id", referencedColumnName="id")
 
     private Classifications classifications;
 
-    public long getPackage_id() {
-        return package_id;
+    public long getId() {
+        return id;
     }
 
-    public void setPackage_id(long package_id) {
-        this.package_id = package_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -55,9 +55,8 @@ public class Packages {
     }
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JsonBackReference
     @JoinTable(name = "user_packages",
-            joinColumns = @JoinColumn(name = "package_id", referencedColumnName = "package_id"),
+            joinColumns = @JoinColumn(name = "package_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"))
     private Set<User>  users = new HashSet<User>();
 

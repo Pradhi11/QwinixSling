@@ -9,18 +9,20 @@ import java.util.List;
 public class Classifications {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long classification_id;
+    private long id;
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Packages> packages = new ArrayList<>();
 
-    public long getClassification_id() {
-        return classification_id;
+    Classifications(){}
+
+    public long getId() {
+        return id;
     }
 
-    public void setClassification_id(long classification_id) {
-        this.classification_id = classification_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
