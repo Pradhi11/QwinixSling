@@ -19,11 +19,9 @@ public class Packages {
 
     Packages(){}
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "subsrciption_id", referencedColumnName="subsrciption_id")
-
-    private Subscriptions subscriptions;
+//    @JsonBackReference
+//    @ManyToOne
+//    @JoinColumn(name = "subsrciption_id", referencedColumnName="subsrciption_id")
 
     public long getPackage_id() {
         return package_id;
@@ -49,15 +47,4 @@ public class Packages {
         this.channels = channels;
     }
 
-    public Subscriptions getSubscriptions() {
-        return subscriptions;
-    }
-
-    public void setSubscriptions(Subscriptions subscriptions) {
-        this.subscriptions = subscriptions;
-    }
-
-    //    public Packages(List<Channels> channels) {
-//        this.channels = channels;
-//    }
 }

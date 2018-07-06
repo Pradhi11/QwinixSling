@@ -1,5 +1,6 @@
 package com.qwinix.QwinixSling.controller;
 
+import com.qwinix.QwinixSling.model.SubscriptionModel;
 import com.qwinix.QwinixSling.model.Subscriptions;
 import com.qwinix.QwinixSling.model.User;
 import com.qwinix.QwinixSling.service.CreateSubscriptionService;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 public class SubscriptionController {
 
@@ -17,9 +20,9 @@ public class SubscriptionController {
 
     @PostMapping("/subscription/{user_id}")
 
-    public User createSubcription(@PathVariable Long user_id, @RequestBody Subscriptions subscriptions){
+    public ArrayList<Subscriptions> createSubcription(@PathVariable Long user_id, @RequestBody SubscriptionModel subscriptionModel){
 
-        User user =  createSubscription.saveSubscription(user_id, subscriptions);
-        return user;
+        ArrayList<Subscriptions> subscriptions =  createSubscription.saveSubscription(user_id, subscriptionModel);
+        return subscriptions;
     }
 }
