@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Repository
 public interface ChannelRepo extends JpaRepository<Channels, Long> {
 
-    @Query("SELECT id FROM Channels where classification_id = :classification_id")
-    public ArrayList<Long> findBySearchTerm(@Param("classification_id") Long classification_id);
+    @Query("SELECT id FROM Channels where package_id = :package_id")
+    public ArrayList<Long> findBySearchTerm(@Param("package_id") Long package_id);
 
 }
