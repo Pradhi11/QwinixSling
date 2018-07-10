@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CreateSubscriptionService {
@@ -28,6 +29,8 @@ public class CreateSubscriptionService {
 
     public ArrayList<Subscriptions> saveSubscription(Long id, SubscriptionModel subscriptionModel){
         ArrayList<Subscriptions> subscriptionsArrayList = new ArrayList<>();
+        System.out.println(subscriptionModel.getPackage_id());
+        System.out.println(subscriptionModel.getChannel_id());
         User user =  userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("user" , "id", id));
         Packages packages = packageRepo.findById(subscriptionModel.getPackage_id()).orElseThrow(()-> new ResourceNotFoundException("packages", "package_id", subscriptionModel.getPackage_id()));
         for (Long channel_id: subscriptionModel.getChannel_id()
@@ -41,6 +44,16 @@ public class CreateSubscriptionService {
             subscriptionsArrayList.add(subscriptionRepo.save(subscriptions));
         }
 
+        return subscriptionsArrayList;
+    }
+
+    public ArrayList<Subscriptions> updateSubscription(Long id, SubscriptionModel subscriptionModel){
+        ArrayList<Subscriptions> subscriptionsArrayList = new ArrayList<>();
+        Long user_id = subscriptionRepo.findUser(id);
+        if (user_id > 0){
+            int aBoolean = subscriptionRepo.deleteUserPackages(subscriptionModel.getPackage_id(), id);
+            subscriptionsArrayList = saveSubscription(id, subscriptionModel);
+        }
         return subscriptionsArrayList;
     }
 }
